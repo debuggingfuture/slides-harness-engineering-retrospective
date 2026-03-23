@@ -14,6 +14,9 @@ Top Banner
 -    highlight which part of perspective it is talking about
 
 
+For Section 3
+When we talk about each perspective, shows the relevant principle from openai
+
 ## Table of Contents
 
 
@@ -43,7 +46,7 @@ Top Banner
 
 - **Project Timeline**
   - 6 milestones (3 click groups): Sonnet 4.5 (Sep 25) → Kickoff (Oct 25) → Prototyping (Jan 26) → Opus 4.6 (Feb 26) → Pivot/Integrations (Feb 26) → Production/Beta (Mar 26)
-  - Claude Code usage: Pro Plan → Premium Seat → AWS Bedrock
+  - Claude Code usage: Pro → Team x Premium → AWS Bedrock
   - Team: 1 Designer, 3 Principal Dev (12yr+), 1 Senior FE
   - Vincent: somehow taken PM+DevSecOps+Tech Lead role, ~30-50 PRs / week  | ~100 messages/day to Claude
   - [commits.jpg](commits.jpg)
@@ -51,7 +54,10 @@ Top Banner
 
 - **Different Mental Models**
   - Two-column with images: Individual (steering the car) vs Team (steering the factory)
-  - Personal workflow with Claude Code vs assembly line with swarm of agents
+  - Personal workflow
+    - Keep prompting & customizing
+  - Assembly line 
+    - Legit, aligned product when evyeryone commanding swarm of agents
 
 ### Section 2: Framework
 
@@ -63,7 +69,9 @@ Top Banner
 
 - **OpenAI's Approach: Harness Engineering**
   - Source: openai.com/index/harness-engineering
-  - 0 lines manually written, AGENTS.md as map, enforce invariants not implementations
+  - Internal Tool build by Codex
+  - Greenfield (empty repo)
+  - Humans steer. Agents execute - 0 lines manually written
   - ~1M LOC in 5 months, 3 engineers, 1,500+ PRs, 6+ hour agent runs
 
 - **Framework: 6+2 Perspectives of Harness Engineering**
@@ -75,9 +83,8 @@ Top Banner
 ### Section 3: Our Take
 
 - **Where Do We Stand?**
-  - Tag: Increasing Autonomy
   - Spectrum bar: Human-assisted → Fully autonomous
-  - Markers: Stripe (~15%, agent as assistant), Us (~35%, humans write code with agents), OpenAI (~85%, agent as engineer)
+  - Markers: Stripe (~15%, agent as assistant), Us (~40%, Human prompt & review), OpenAI (~85%, agent as engineer)
 
 
 - Human-first
@@ -85,150 +92,216 @@ Top Banner
   - Analytics Dashboard
   
 
-- **Perspective 1: Architecture & Taste**
+- **Perspective 1: Repo as System of Record**
+  - "Executable Spec in Repo"
+  - We started out with Github Spec-Kit
+     - specs lives in repo. executable, multi-step refinement
+     - `/clarify` is interesting & prompt you to think
+  - > It rots instantly. It's hard to verify
+  - > give Codex a map, not a 1,000-page instruction manual
+    - Context problem & Drift -> Drop SpecKit, consolidate into markdowns
+  - Git(Hub) based sync & collab
+    - lightweight local markdown files
+    - Both Human & Agents create Github issues for tracking
+  - Omniscient Agents who can Time travel  
+    - "PR#123 tried A but failed, lets dig deeper"
+    - "This bug is on master too not due to our changes"
+    - "Fix these patterns for files we changed since v1.0.3"
+  - Prefer small PRs, pretty master
+    - 1 lint error taxing 15 agents
+  - Out of Repo
+    - Custom scrappers + Indexed docs 
+    - custom CLAUDE.md / skills
+
+- **Perspective 2: Architecture & Taste**
   - On Architecture
-    - Great ROI - Team spent 1st month on discussions and write them down
-    - Footer links to GitHub Spec Kit
-    - opionionated and mostly NOT from agents - cqrs, effect-ts, changeset, signoz etc
-
+    - Early Phrase
+      - Team spent 1st month on discussions and write them down (Great ROI)
+      - opionionated and mostly NOT from agents -  monorepo, effect-ts, changeset, signoz etc
+      - hexagonal, CQRS, DDD -> strict boundary & predictable structure 
+      - Prototype -> Add "Constitution" (Invariant)
+      - Naming convention -> Type-based Schema & Interfaces, working code
+    - Later phrase
+      - Consoldiate docs 
+      - Agents come up with design for pipeliness
  - Style Guide
-   - Took multiple iterations to promot (correct) effect-ts usage
-   - `._tag`
-   - simple pre-pr lint hook (biome) work best, keep agent loop fast
- - At early phrase (4.5) and limited implementation, Not holistic enough to follow the DDD, CQRS patterns
+   - Took multiple iterations to promot (correct) effect-ts usage e.g. `._tag`
+   - Concrete Examples to follow through
+   - Limiting Hooks:  keep agent loop fast e.g. simple pre-pr lint hook (biome) 
+ - At early phrase (Sonnet 4.5) and limited implementation, Not holistic enough to follow the DDD, CQRS patterns
  - Hallucination: unused OR non-isomorphic packages
-
-- **Perspective 2: Agent Legibility**
-
-  - Content: TODO
-
-- **Perspective 3: Repo as System of Record**
-  - We started out with Github SpecKit
-  - Github issues - Created by Human
-  - Content: TODO
-  - Git based
+ 
+   - What's in:
+     - saga / cqrs patterns, kafka schemas state diagram 
+     - data pipeline, marketing stack
 
 
- - specs become executable, multi-step refinement, clarify before building
-
-
-- **Perspective 4: Application Legibility**
-  - Template: badge + subtitle + two-column (What We Did / Learnings)
-  - Content: TODO
-
-  - Designer Developer commiting at storybook
-    - Challenges: 
-      - Git branch conflicts
-      - Lack of Source of truth at Figma
-
-
-- **Perspective 5: Increasing Autonomy**
-  - Template: badge + subtitle + two-column (What We Did / Learnings)
-  - We don't want full autonomy, but direct scarce human attention to focus what matters
-- - **Autonomy**
-  - Gatekeep for compliance and stakeholders requirement take human to digets
-  - We Did
-    - CI self-heal
-    - Monitoring
-    - self-status update
-
-    <!--- Perf Trigger-->
-
-
-- **Perspective 6: Entropy & Garbage Collection**
-  - Problem: AI slop is real
-  - Passing zero-shot output with no review & 15 action items to your colleague
-  - Learnings
-    - Architecture audit & review
-  - Learning: Firewall not working
-    - Original: Start with firewall - Notion by Human, Spec by Agents
+- **Perspective 3: Agent Legibility**
+  - Setup: Slack, Notion MCP, Figma, Granola (Meetings)
+  - What we tried
+    - Figma MCP (Kind of work)
+    - Designer Developer commiting at storybook
+      - Challenges: 
+        - Git branch conflicts
+        - Lack of Source of truth at Figma
+    - Feed "Org Chart" / Contacts to Agent
+  - We (I) want only **curated** context for agent
+  - Support Tagging Slackbot to create draft PR (via OpenCode)
+  
+  - Learnings: Firewall not working
+    - Original: Notion by Human, Spec by Agents
     - Reality: 
-      - Notion & Notion AI are both pretty crap 
+      - Notion & Notion AI are both pretty useless 
       - Everything is written by Agent anyway
       - Github based specs written by Agent are much better actualyl  
       - Lack of Sourth of truth (Internal & External)
+  - Confirmation bias
+
+
+- **Perspective 4: Entropy & Garbage Collection**
+  - Problem: AI slop is real
+  - Passing zero-shot action items to your colleague
+  - Measures
+    - [Auto] Daily update on `STATUS.md` (OpenCode@GHA)
+    - [Auto] PR to issue and PR Reviews  (OpenCode@GHA)
+    - [Auto] Weekly Architecture Audit  (OpenCode@GHA)
+    - Comment to Agentic scrum master on Slack
+  
+    - [Manual] Scheduled Agentic Architecture audit & review on Github Action
       - Talk to codebase: Active Gap analysis / Ask for metric definition 
-    
+    - Spec Reviews and Rewrite    
   - Learning: Remove Dead code is important to avoid hallucination
-    - `gh` cli is subpar
 
 
+
+- **Perspective 5: Application Legibility**
+  - Provide Observability to Agent = Step Function increae in productivity
+
+  - **Deployment CI Pipeline**
+    - (Typical Challenges)
+      - Complexity: 3 Env x 7-9 Components (AWS ECS, Kafka connectors) x Secret Management
+      - IaC (Pulumi), Github Acitons - Circular Dependencies, State drift, IAM design etc
+    - Agents to the rescue
+      - Deploy to Staging -> Point agent to failing build, fix manually & add Guidelines, e2e, deployment (soak), acceptance Tests
+      - Deploy to prod -> Create `pre-prod` branch, agent PR, merge, deploy, validate CI
+
+ - **Production Validations/Monitoring**
+   - Provision Pulumi ESC for Read-only environment
+   - Agent: build out k6 test suite
+   - SigNoz, PostHog: iterate metrics, alerts, dashboard with agents
+   - Claude Skill to torubleshoot / Scheduled OpenCode@GHA -> Slack 
+
+
+  - **Custom CLI Helped**
+    - deterministic, better interpolation vs Bash
+    - effect-ts based cli
+      - cicd (workaround GH action YAML)
+      - access provision
+    
+  - **#Missout**
+    - Integration Tests/ Local Dev**
+      - Challenge:
+        - Dagger - slow & not really helping
+    - UX QA: No agentic workflow to do QA on CLS, speed, reproduce & record bugs etc
+    - (Did not use Chrome Dev Tools via CDP/MCP/agent-use )
+    - SLO: setup SLO (stub)
+    
+    
+- **Perspective 6: Increasing Autonomy**  
+  - We don't want full autonomy
+      - Gatekeep for compliance and stakeholders requirement take human to digest
+  - What we want
+    - direct scarce human attention to focus what matters (a.k.a stay in the flow)
+    - Avoid human being the bottleneck  
+  - We Do have
+    - Auto PR Reviews 
+    - CI self-heal
+    - Monitoring
+    - self-status update
+  - We struggle
+    - Auto sprint planning
+    - Piping all Slack convo as context
+    - Human being blocker 
+      - my misunderstadning in pulumi stack wasted agent cycles 
+      - Dev not familar with latest Browser stack
+  - We don't have
+    - Auto-merge PRs 
+    - CD to prod 
+    - Auto Feature base on PostHog usages
+
+ 
+  
 - **Perspective 7: Human Legibility**
 
+  - **Novel problem: Know what you ship**?
+    - Background
+      - Pace Faster than ever
+      - Agent shipped with stack you unfamilar with
+    - Challenges
+      - Gaps in architecture, mock implementations
+    - **What matters**
+      - Branch convention, Code Ownership still matters 
+      - Custom CLI helped 
+      - Yes I still have to learn!
+      - Conscious on what I can live with
 
-  - **Know what your ship**?
-    - Tech: Gaps in architecture, mock implementations
-    - Discussion on prototype 
-
+  - **Improving with Agents**     
+    - Document and Challenge both thinking process and solution
+    - high signal-to-noise Prompt Templates (e.g. PR review)
+    - Create well-defined skills and prettified CLIs 
+    - Personal: `/insights` command for usage patterns, habits, productivity
+    - Team:
+       - Challenges: Limited tools (e.g. Claude). Involves sensitive data
+       
 
 - **Perspective 8: Agility**
-  - Be Agile / No best practices / everyone is learning
-  - Tags: Application Legibility, Entropy & Garbage Collection
+  - Tagline
+    - "Everyone is learning. Ship Working software and respond to change."
+  - Be Agile / No best practices
   - Back to basics: Quote agile manifesto
+    - Individuals and interactions over processes and tools
+    - Working software over comprehensive documentation
+    - Customer collaboration over contract negotiation
+    - Responding to change over following a plan
   - Stay True: Need of Deep Think. Tailor Featureset
   - What we did: Spawn Opencode/Slackbot next day after reading Stripe articles
 
-- **Known Miss Out**
+
+## Section 4: Reflections & Outro
+
+ - **Excited, Overwhelmed, Burn out, Confused**
  
-  - UX QA: No agentic workflow to do QA on CLS, speed, reproduce & record bugs etc
-  - SLO: setup SLO (stub)
-
-
-
-
-
-- **Create Custom CLI**
-  - deterministic, better interpolation vs Bash
-  - effect-ts based cli
-    - cicd (workaround GH action YAML)
-    - access provision
+  - When is Autonomy Desired?
   
-## Section 4: 
-
-  - High level "Known miss outs" for things to experiment
-  - "Unknown missouts" to highlights things we're not sure if industry has an answer
-
-  - For more market operations
-  - Lean4 spec  
+  - When to remove human as bottleneck?
+ 
+  - Which part of software are "malleable"? 
+   
+  - How to be Ownership-first for each role? PM, Designer
   
+  - Agent boosted my productivity but I'm not sleeping.. What's wrong?
 
-
-
-- Challenge: AI Sandbox
-  - Dagger - slow
-  - ~ application legibility
-
-- Agent to consolidate specs
-
-
-
-- Human as bottleneck
-  - less familar with browser testing stack
+  - Tools are free. What Next should I build?
+    
   
+  - **FOMO**
+    - Local-first Notion alternative for mission control?
+    - Best Sandbox Environment
+    - Formal Verifiable & Executable Spec (Lean4)
+    - Zero-trust context management?
+
   
+- **That's the Engineering part**
+
+  - You still need the creative part
+
+  - Quote from Peter Rice
+
+    >  best buildings result from the symbiotic relationship between the architect and the engineer where the engineer is the objective inventor and the architect the creative input.
   
 
-- **Unknown Miss Out**
-  - Local-first Notion alternative for collaboration?
-  - Sandbox environment (stub)
-  
-  - Type systems 
 
-
-- **Case Study: CI Pipeline**
-  - Two-column: Human (deploy staging, verify health, update arch diagrams) vs Agent (create pre-prod branch, run tests, deploy, merge PR)
-  - Human = taste & verification, Agent = execution & mechanics
-
-- **Reflection: How Much Do I Know About the Systems?**
-  - Less Familiar Stacks: CF Queues, Effect-TS patterns, SigNoz, CF Durable Objects
-  - Code Paths I Didn't Know Existed: Kafka rebalance, Flink checkpoint recovery, D1 batch transactions, Pulumi dynamic providers
-
-- **Improving with Claude Code**
-  - Tags: Entropy & Garbage Collection, Repo as System of Record
-  - Personal: `/insights` command for usage patterns, habits, productivity
-  - Team: hard to aggregate, sensitive data, no safe sharing, manual knowledge sharing gap
-
-## Appendixx
+## Appendix
 
 - **Datadog: Deterministic Simulation Testing**
   - Source: datadoghq.com/blog/ai/harness-first-agents
@@ -238,56 +311,18 @@ Top Banner
 
 
 
-### Application Legibility
-
-- Huge unlock
-
-### Section 4: Personal Reflection
-
-- In vs out of loop
-  - reactive
-  -  
-  
-  
-- can't stop working
-  -  must be dumb
-  
-  
-  
-  ccli
-  
-  projects skills
-  - cli
-
-
-- Ownership-first
-  - AI Slop is very real
-- Concensus
-  - Meetings notes v Signoffs
-  
-  
-- **When autonomy is desired**
-
-
-
-- **Overall**
-  - Human drives architecture, agents excel at implementation
-  - Architecture held up as complexity grew
-  - Harness engineering amplifies human intent, doesn't replace it
-
-- **Stay in the Flow** (quote)
-  - Mitchell Hashimoto quote on letting agents work while you do other tasks
-  - Disable notifications, stay in deep work, invest mistakes into guardrails
-
+---
 
 ## Slidev Conventions
 
 - Slides are separated by `---`
 - Frontmatter at top of file configures theme, transitions, etc.
 - `v-click` / `<v-clicks>` — progressive reveal on click
-- We should limit each slides to have usually only 2 clicks, at most 3
+- For animation, We should limit each slides to have usually only 1 clicks, at most 3
 - `v-click="N"` — group elements to reveal together on click N
 - Two-column layouts use `<div class="grid grid-cols-2 gap-8">` with Tailwind
+- Quotes (`>`) should be plain markdown blockquotes — never wrap them in colored boxes (`border-*`, `bg-*`). Ensure enough gap between quotes
+- Avoid repeating the same or similar phrases twice on one slide — if the title says it, the bullets shouldn't restate it
 
 
 
@@ -317,3 +352,12 @@ The presentation quote and link to below
 - [GitHub Spec Kit](https://github.com/github/spec-kit)
 - [Datadog: Harness-first Agents](https://www.datadoghq.com/blog/ai/harness-first-agents/)
 - Agile Manifesto: https://agilemanifesto.org/
+- [Malleable Softare](https://www.inkandswitch.com/essay/malleable-software/#our-goal-malleable-software)
+
+
+
+---
+  - Metaphor: Architect vs Structural Engineer
+  
+
+Destination

@@ -15,6 +15,6 @@ defineProps({
 
 <style scoped>
 .perspective-layout {
-  padding: 5rem 2rem 1.5rem;
+  padding: 6.5rem 2rem 1.5rem;
 }
 </style>

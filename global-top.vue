@@ -6,18 +6,18 @@ const nav = toRef(ctx, 'nav')
 
 const sections = [
   { id: 1, label: 'Background' },
-  { id: 2, label: 'References' },
+  { id: 2, label: 'How Others Do It' },
   { id: 3, label: 'Our Take' },
   { id: 4, label: 'Reflection' },
 ]
 
 const perspectives = [
-  { id: 1, label: 'Architecture & Taste', color: 'amber' },
-  { id: 2, label: 'Agent Legibility', color: 'cyan' },
-  { id: 3, label: 'System of Record', color: 'green' },
-  { id: 4, label: 'App Legibility', color: 'blue' },
-  { id: 5, label: 'Increasing Autonomy', color: 'purple' },
-  { id: 6, label: 'Entropy & GC', color: 'rose' },
+  { id: 1, label: 'System of Record', color: 'green' },
+  { id: 2, label: 'Architecture & Taste', color: 'amber' },
+  { id: 3, label: 'Agent Legibility', color: 'cyan' },
+  { id: 4, label: 'Entropy & GC', color: 'rose' },
+  { id: 5, label: 'App Legibility', color: 'blue' },
+  { id: 6, label: 'Increasing Autonomy', color: 'purple' },
   { id: 7, label: 'Human Legibility', color: 'teal' },
   { id: 8, label: 'Agility', color: 'orange' },
 ]
@@ -79,7 +79,10 @@ const currentSection = computed(() => {
   return 1
 })
 
-const isSection3 = computed(() => currentSection.value === 3)
+const isSection3 = computed(() => {
+  const current = allSlides.value.find(s => s.no === currentSlideNo.value)
+  return currentSection.value === 3 && getLayout(current) === 'perspective'
+})
 
 const activeIds = computed(() => {
   const all = allSlides.value
@@ -119,14 +122,14 @@ function getPerspectiveClasses(p) {
   const isActive = activeIds.value.includes(p.id)
   const colors = perspectiveColorMap[p.color]
   return isActive
-    ? colors.active + ' font-bold scale-105'
+    ? colors.active + ' font-bold'
     : colors.dim + ' hover:opacity-70'
 }
 </script>
 
 <template>
-  <div class="global-top-banner">
-    <div class="flex items-center gap-1.5 px-4 pt-2">
+  <div class="global-top-banner" style="position: absolute; top: 0; left: 0; right: 0; z-index: 100;">
+    <div class="flex items-center gap-3 px-4 pt-2">
       <span
         v-for="s in sections"
         :key="s.id"
@@ -138,7 +141,7 @@ function getPerspectiveClasses(p) {
       </span>
     </div>
 
-    <div v-if="isSection3" class="grid grid-cols-4 gap-1 px-4 pt-1.5">
+    <div v-if="isSection3" class="grid grid-cols-4 px-4 pt-1.5" style="gap: 8px;">
       <span
         v-for="p in perspectives"
         :key="p.id"
@@ -151,3 +154,12 @@ function getPerspectiveClasses(p) {
     </div>
   </div>
 </template>
+
+<style>
+.slidev-layout {
+  padding-top: 4rem !important;
+}
+.perspective-layout {
+  padding-top: 6.5rem !important;
+}
+</style>
