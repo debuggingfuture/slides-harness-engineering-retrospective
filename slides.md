@@ -375,7 +375,7 @@ active: 1
   - *"Refactor these patterns for files changed since v1.0.3"*
   - *These are the pre-requisites. Add these secrets first.*
 - **Parallelized: 6+ worktress, rebase & cherry-pick**
-- **Preferred: Keep PR Small, Keep master Pretty**
+- **Classic Best Practices: Keep PR Small, Keep master Pretty**
   - 1 lint error taxes 15 agents
 - **Out of repo:** custom scrapers + indexed docs, custom CLAUDE.md / skills
 
@@ -474,7 +474,7 @@ active: 4
 
 <div class="text-sm opacity-60">Continuous cleanup prevents drift.</div>
 
-- **AI slop is real** — passing zero-shot output with no review & 15+ action items to your colleague
+- **AI slop is real** — zero-shot without review tagging 10+ action items for your colleague
 - Merging agent PRs without reading the diff, things didn't git add in worktree
 - Agents merging to `master` with `--admin`
 - **Every "no look pass"** bets the harness catches what your eyes didn't
@@ -507,7 +507,7 @@ active: 4
 
 ### Manual
 
-- Scheduled architecture audit & review — talk to codebase
+- Architecture audit & review — talk to codebase
 - Spec rewrite, active gap analysis
 - **Remove dead code** — stale code is a hallucination magnet
 
@@ -524,7 +524,7 @@ active: 5
 
 <div class="text-sm opacity-60">Agents can drive the app, read logs, query metrics.</div>
 
-- **Typical CI Complexity** - 3 Env x 7-9 Components x Secret Management.
+- **Our CI Complexity** - 3 Env x 7-9 Components x Secret Management.
   - IaC (Pulumi), GitHub Actions — circular deps, state drift, IAM
 - **Deployment as Case Study**
   - Staging: point agent to failing build, fix & add guidelines, e2e, soak tests
@@ -541,7 +541,7 @@ layout: perspective
 active: 5
 ---
 
-# Custom CLI Helped / What We Missed
+# Utilities, Guardrails and TODOs
 
 <div class="text-sm opacity-60">Agents can drive the app, read logs, query metrics.</div>
 
