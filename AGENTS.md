@@ -150,7 +150,7 @@ When we talk about each perspective, shows the relevant principle from openai
     - Feed "Org Chart" / Contacts to Agent
   - We (I) want only **curated** context for agent
   - Support Tagging Slackbot to create draft PR (via OpenCode)
-  
+  - **Security** is the hard part!
   - Learnings: Firewall not working
     - Original: Notion by Human, Spec by Agents
     - Reality: 

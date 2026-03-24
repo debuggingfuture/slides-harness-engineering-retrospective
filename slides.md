@@ -428,11 +428,24 @@ active: 3
 
 <div class="text-sm opacity-60">Optimize for the agent's ability to reason.</div>
 
+<div class="grid grid-cols-2 gap-8 mt-4">
+
+<div>
+
 - **Setup**: Slack, Notion MCP, Figma MCP (kind of works), Granola (Meetings)
 - **Feed context**: org chart, contacts to agent
 - **Lack of source of truth** — internal & external outside Git
 - We want only **curated** context — not everything
 - Support Prompting Slackbot to create draft PR (via OpenCode)
+- **Security** is the hard part!
+
+</div>
+
+<div class="flex items-center justify-center h-full">
+  <img src="/slackbot.png" class="rounded-lg shadow w-4/5 object-contain" />
+</div>
+
+</div>
 
 ---
 layout: perspective
@@ -447,29 +460,10 @@ active: 3
   - Plan: Notion by human, specs by agent
   - Reality: 
     - Unmaintained AI Slop (Notion & Notion AI both quite useless)
-    - GitHub-based specs written by agents outperformed
+    - GitHub-based specs written by agents outperforming
 - **Confirmation bias** — agents reinforce what you already believe
 - **CLAUDE.md / AGENTS.md** must be modular, verifiable, maintained — stale instructions are worse than none
-
----
-layout: perspective
-active: 3
----
-
-# Open Source Really Matters
-
-<div class="text-sm opacity-60">Optimize for the agent's ability to reason.</div>
-
-- **Open source = context for free** — agents can read source, issues, PRs, docs of your dependencies
-- Closed-source libraries = black box for agents — hallucinated APIs, outdated docs, guesswork
-- **More context, better reasoning**
-  - Indexed open-source docs (custom scrapers) feed agents real implementation details
-  - Agent can trace bugs across dependency boundaries
-  - Community patterns & examples as training signal
-
-> When agents can read the source, they stop guessing and start reasoning.
-
-<img src="/tests.png" class="mt-4 mx-auto h-48 rounded-lg shadow" />
+- Open Stacks really help
 
 ---
 layout: perspective
@@ -513,8 +507,8 @@ active: 4
 
 ### Manual
 
-- Scheduled architecture audit & review — talk to codebase, active gap analysis
-- Spec reviews and rewrite
+- Scheduled architecture audit & review — talk to codebase
+- Spec rewrite, active gap analysis
 - **Remove dead code** — stale code is a hallucination magnet
 
 </div>
