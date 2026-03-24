@@ -718,8 +718,8 @@ active: 8
 
 </div>
 
-- **Go fast, Go Slow** — Different landscape every week 
-- **Need of deep think** — tailor featureset, don't just ship what agents suggest
+- **Go Fast, Go Slow** — Different landscape every week 
+- **Deep think is even more valuable** — Don't be reactive. Tailor featureset that matters.
 - **What we did**: spawned Opencode/Slackbot the next day after reading the Stripe article
 
 ---
