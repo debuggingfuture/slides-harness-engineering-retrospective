@@ -142,7 +142,7 @@ layout: quote
 <div>
 
 - **Team**: 1 Designer, 3 Principal Devs (12yr+ experience), 1 Senior FE Dev
-- **Vincent (me)**: PM + Security + Tech Lead role <br /> ~30-50 PRs/week | ~120 msg/day to Claude | <br /> 0 LoC manually-written
+- **Vincent (me)**: PM + Security/Data Privacy + Tech Lead role <br /> ~30-50 PRs/week | ~120 msg/day to Claude | <br /> 0 LoC manually-written
 - **Claude Code**: Pro → Team | Premium → AWS Bedrock. Token efficieny not (yet) a priority
 
 
@@ -318,41 +318,74 @@ layout: perspective
 active: 1
 ---
 
+<div class="grid grid-cols-2 gap-8 text-sm h-full">
+
+<div>
+
 # Executable Spec in Repo
 
-<div class="text-sm opacity-60">If it's not in the repo, it doesn't exist.</div>
+<div class="text-sm opacity-60 mb-4">If it's not in the repo, it doesn't exist.</div>
+
+<div class="mb-4">
 
 > "Give Codex a map, not a 1,000-page instruction manual."
 
-<div class="mt-4"></div>
+</div>
+<div class="mb-4">
 
 > "It rots instantly. It's hard to verify."
 
-- Started with **[GitHub Spec Kit](https://github.com/github/spec-kit)** — `/clarify` prompts you to think. But Too Wordy.
-- **Context drift** → dropped Spec Kit, consolidated into local markdown files
+</div>
+
+- Started with **[GitHub Spec Kit](https://github.com/github/spec-kit)** — `/clarify` prompts me to think.
+- **Wordy, Context drift** → dropped Spec Kit, consolidated into markdown by design, workflow, runbook (Still ~27k lines)
 - **Git(Hub)-based collab**
-  - Solved Sync
-  - Local lightweight markdown = Fast
+  - Solved Sync. Local lightweight markdown = Fast
   - both humans & agents create issues
-- **Notion (& AI) = 2nd tier** — Expensive, Slow, Dumb 
+- **Notion (& AI) = subpar** — Expensive, Slow, Dumb, Drifted
+
+</div>
+
+<div class="h-full">
+  <img src="/constitution.png" class="rounded-lg shadow h-full w-full object-cover" />
+</div>
+
+</div>
+
 ---
 layout: perspective
 active: 1
 ---
 
-# Omniscient Agents who can Time travel
+<div class="col-span-2 mb-2">
+
+# Omniscient Agents who can time travel
 
 <div class="text-sm opacity-60">If it's not in the repo, it doesn't exist.</div>
 
-- **Knowing in-and-out of the codebase** 
+</div>
+
+<div class="grid grid-cols-2 gap-8 text-sm" style="height: calc(100% - 5rem)">
+
+<div>
+
+- **Knowing in-and-out of the codebase**
   - *"PR#123 tried A but failed, let's dig deeper"*
-  - *"This bug is on master too — not our changes"*
+  - *"This bug is on master too — not due to our changes"*
   - *"Refactor these patterns for files changed since v1.0.3"*
-  - *These are the pre-requisites. Add these secrets first.* 
-
-
-- **Small PRs, pretty master** — 1 lint error taxes 15 agents
+  - *These are the pre-requisites. Add these secrets first.*
+- **Parallelized: 6+ worktress, rebase & cherry-pick**
+- **Classic Best Practices: Keep PR Small, Keep master Pretty**
+  - 1 lint error taxes 15 agents
 - **Out of repo:** custom scrapers + indexed docs, custom CLAUDE.md / skills
+
+</div>
+
+<div class="h-full flex flex-col justify-center">
+  <img src="/pr.png" class="rounded-lg shadow w-full object-contain" />
+</div>
+
+</div>
 
 ---
 layout: perspective
@@ -363,12 +396,13 @@ active: 2
 
 <div class="text-sm opacity-60">Enforce invariants, not implementations.</div>
 
-- **Early phase** — 1st month on discussions, wrote them down (great ROI)
-- **Opinionated, NOT from agents** — monorepo, Effect-TS, changeset, SigNoz
+- **Kickstart** — 1st month on discussions, wrote them down (great ROI)
+- **Opinionated, NOT from agents** — monorepo, Saga, Effect-TS, changeset, SigNoz etc (NO Supabase!)
 - Hexagonal, CQRS, DDD → strict boundary & predictable structure
-- Prototype → add "Constitution" (invariants)
-- Naming convention → type-based Schema & Interfaces
-- **Later phase** — agents design pipelines (saga, Kafka schemas, data pipeline, marketing stack)
+- **Early Phase** — bootstrapping Harness
+  - Prototyping → add "Constitution" (invariants)
+  - Naming conventions → type-based Schema & Interfaces
+- **Later Phase** — entrust agents on design (CI pipelines, Kafka schemas, data pipelines, marketing stack, tests3)
 
 ---
 layout: perspective
@@ -379,8 +413,8 @@ active: 2
 
 <div class="text-sm opacity-60">Enforce invariants, not implementations.</div>
 
-- Multiple iterations to prompt correct Effect-TS usage (e.g. `._tag`)
-- Concrete examples work best
+- Multiple iterations to promote idiomitic Effect-TS usage (e.g. `Option` not `._tag`)
+- Concise, Concrete examples work best
 - Simple pre-PR lint hook (Biome) — keep agent loop fast
 - Early phase (Sonnet 4.5): not holistic enough for DDD/CQRS
 - **Hallucination**: unused or non-isomorphic packages
@@ -394,11 +428,24 @@ active: 3
 
 <div class="text-sm opacity-60">Optimize for the agent's ability to reason.</div>
 
+<div class="grid grid-cols-2 gap-8 mt-4">
+
+<div>
+
 - **Setup**: Slack, Notion MCP, Figma MCP (kind of works), Granola (Meetings)
-- **Feed context**: org chart, handles/contacts to agent
+- **Feed context**: org chart, contacts to agent
 - **Lack of source of truth** — internal & external outside Git
 - We want only **curated** context — not everything
 - Support Prompting Slackbot to create draft PR (via OpenCode)
+- **Security** is the hard part!
+
+</div>
+
+<div class="flex items-center justify-center h-full">
+  <img src="/slackbot.png" class="rounded-lg shadow w-4/5 object-contain" />
+</div>
+
+</div>
 
 ---
 layout: perspective
@@ -413,9 +460,10 @@ active: 3
   - Plan: Notion by human, specs by agent
   - Reality: 
     - Unmaintained AI Slop (Notion & Notion AI both quite useless)
-    - GitHub-based specs written by agents outperformed
+    - GitHub-based specs written by agents outperforming
 - **Confirmation bias** — agents reinforce what you already believe
 - **CLAUDE.md / AGENTS.md** must be modular, verifiable, maintained — stale instructions are worse than none
+- Open Stacks really help
 
 ---
 layout: perspective
@@ -426,7 +474,7 @@ active: 4
 
 <div class="text-sm opacity-60">Continuous cleanup prevents drift.</div>
 
-- **AI slop is real** — passing zero-shot output with no review & 15+ action items to your colleague
+- **AI slop is real** — zero-shot without review tagging 10+ action items for your colleague
 - Merging agent PRs without reading the diff, things didn't git add in worktree
 - Agents merging to `master` with `--admin`
 - **Every "no look pass"** bets the harness catches what your eyes didn't
@@ -438,7 +486,7 @@ layout: perspective
 active: 4
 ---
 
-# Measures
+# Fighting 2nd law of thermodynamics
 
 <div class="text-sm opacity-60">Continuous cleanup prevents drift.</div>
 
@@ -459,8 +507,8 @@ active: 4
 
 ### Manual
 
-- Scheduled architecture audit & review — talk to codebase, active gap analysis
-- Spec reviews and rewrite
+- Architecture audit & review — talk to codebase
+- Spec rewrite, active gap analysis
 - **Remove dead code** — stale code is a hallucination magnet
 
 </div>
@@ -476,7 +524,7 @@ active: 5
 
 <div class="text-sm opacity-60">Agents can drive the app, read logs, query metrics.</div>
 
-- **Typical CI Complexity** - 3 Env x 7-9 Components x Secret Management.
+- **Our CI Complexity** - 3 Env x 7-9 Components x Secret Management.
   - IaC (Pulumi), GitHub Actions — circular deps, state drift, IAM
 - **Deployment as Case Study**
   - Staging: point agent to failing build, fix & add guidelines, e2e, soak tests
@@ -486,13 +534,14 @@ active: 5
   - SigNoz, PostHog: iterate metrics, alerts, dashboards with agents
   - Claude Skill to troubleshoot / Scheduled OpenCode@GHA → Slack
 
+<img src="/perf_chokepoint.png" class="mt-4 mx-auto h-36 rounded-lg shadow" />
 
 ---
 layout: perspective
 active: 5
 ---
 
-# Custom CLI Helped / What We Missed
+# Utilities, Guardrails and TODOs
 
 <div class="text-sm opacity-60">Agents can drive the app, read logs, query metrics.</div>
 
@@ -621,8 +670,10 @@ active: 7
 - **Document and challenge** both thinking process and solution
 - Create **well-defined skills** and high signal-to-noise CLIs
 - **Personal**: `/insights` command for usage patterns, habits, productivity
-- **Team**: hard to aggregate, sensitive data, no safe sharing, manual knowledge sharing gap
-
+- **Team visibility**
+  - reviews on PR, prompting agents on slack together
+  - conventional commits / PR templates 
+  - aggregate insights is hard: sensitive data
 ---
 layout: perspective
 active: 8
@@ -630,7 +681,7 @@ active: 8
 
 # Everyone Is Learning
 
-<div class="text-sm opacity-60">Ship, learn, adapt.</div>
+<div class="text-sm opacity-60">Back to Agile Manifesto. Bias towards shipping.</div>
 
 <div class="mt-6 space-y-3">
 
@@ -666,6 +717,7 @@ active: 8
 
 </div>
 
+- **Go fast, Go Slow** — Different landscape every week 
 - **Need of deep think** — tailor featureset, don't just ship what agents suggest
 - **What we did**: spawned Opencode/Slackbot the next day after reading the Stripe article
 
@@ -675,29 +727,29 @@ active: 8
 
 <div class="grid grid-cols-4 gap-4 mt-6">
 
-<div v-click="1" class="border border-emerald-400/40 bg-emerald-500/10 rounded-lg p-4 text-center">
+<div class="border border-emerald-400/40 bg-emerald-500/10 rounded-lg p-4 text-center">
 <div class="text-2xl mb-2">&#9889;</div>
 <div class="text-emerald-300 font-bold">Excited</div>
 </div>
 
-<div v-click="1" class="border border-amber-400/40 bg-amber-500/10 rounded-lg p-4 text-center">
+<div class="border border-amber-400/40 bg-amber-500/10 rounded-lg p-4 text-center">
 <div class="text-2xl mb-2">&#127754;</div>
 <div class="text-amber-300 font-bold">Overwhelmed</div>
 </div>
 
-<div v-click="1" class="border border-rose-400/40 bg-rose-500/10 rounded-lg p-4 text-center">
+<div class="border border-rose-400/40 bg-rose-500/10 rounded-lg p-4 text-center">
 <div class="text-2xl mb-2">&#128293;</div>
 <div class="text-rose-300 font-bold">Burnout</div>
 </div>
 
-<div v-click="1" class="border border-purple-400/40 bg-purple-500/10 rounded-lg p-4 text-center">
+<div class="border border-purple-400/40 bg-purple-500/10 rounded-lg p-4 text-center">
 <div class="text-2xl mb-2">&#10067;</div>
 <div class="text-purple-300 font-bold">Confused</div>
 </div>
 
 </div>
 
-<div v-click="2" class="mt-8 space-y-3">
+<div v-click="1" class="mt-8 space-y-3">
 
 - When is **autonomy desired** — and when does it hurt?
 - When to **remove the human as bottleneck** — and when to stay in the loop?

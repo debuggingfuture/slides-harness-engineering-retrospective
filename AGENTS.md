@@ -103,6 +103,9 @@ When we talk about each perspective, shows the relevant principle from openai
   - Git(Hub) based sync & collab
     - lightweight local markdown files
     - Both Human & Agents create Github issues for tracking
+  - Senior Dev still need Progressive onboarding
+  - [constitution.png](constitution.png)
+   
   - Omniscient Agents who can Time travel  
     - "PR#123 tried A but failed, lets dig deeper"
     - "This bug is on master too not due to our changes"
@@ -117,7 +120,7 @@ When we talk about each perspective, shows the relevant principle from openai
   - On Architecture
     - Early Phrase
       - Team spent 1st month on discussions and write them down (Great ROI)
-      - opionionated and mostly NOT from agents -  monorepo, effect-ts, changeset, signoz etc
+      - opionionated and mostly NOT from agents - e.g. monorepo, effect-ts, changeset, signoz etc
       - hexagonal, CQRS, DDD -> strict boundary & predictable structure 
       - Prototype -> Add "Constitution" (Invariant)
       - Naming convention -> Type-based Schema & Interfaces, working code
@@ -147,15 +150,16 @@ When we talk about each perspective, shows the relevant principle from openai
     - Feed "Org Chart" / Contacts to Agent
   - We (I) want only **curated** context for agent
   - Support Tagging Slackbot to create draft PR (via OpenCode)
-  
+  - **Security** is the hard part!
   - Learnings: Firewall not working
     - Original: Notion by Human, Spec by Agents
     - Reality: 
-      - Notion & Notion AI are both pretty useless 
       - Everything is written by Agent anyway
       - Github based specs written by Agent are much better actualyl  
       - Lack of Sourth of truth (Internal & External)
   - Confirmation bias
+  - Open source really important
+  - More Context
 
 
 - **Perspective 4: Entropy & Garbage Collection**
