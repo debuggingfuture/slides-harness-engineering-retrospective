@@ -486,7 +486,7 @@ layout: perspective
 active: 4
 ---
 
-# Measures
+# Fighting 2nd law of thermodynamics
 
 <div class="text-sm opacity-60">Continuous cleanup prevents drift.</div>
 
@@ -670,8 +670,10 @@ active: 7
 - **Document and challenge** both thinking process and solution
 - Create **well-defined skills** and high signal-to-noise CLIs
 - **Personal**: `/insights` command for usage patterns, habits, productivity
-- **Team**: hard to aggregate, sensitive data, no safe sharing, manual knowledge sharing gap
-
+- **Team visibility**
+  - reviews on PR, prompting agents on slack together
+  - conventional commits / PR templates 
+  - aggregate insights is hard: sensitive data
 ---
 layout: perspective
 active: 8
@@ -679,7 +681,7 @@ active: 8
 
 # Everyone Is Learning
 
-<div class="text-sm opacity-60">Ship, learn, adapt.</div>
+<div class="text-sm opacity-60">Back to Agile Manifesto. Bias towards shipping.</div>
 
 <div class="mt-6 space-y-3">
 
@@ -715,6 +717,7 @@ active: 8
 
 </div>
 
+- **Go fast, Go Slow** — Different landscape every week 
 - **Need of deep think** — tailor featureset, don't just ship what agents suggest
 - **What we did**: spawned Opencode/Slackbot the next day after reading the Stripe article
 
