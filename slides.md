@@ -17,7 +17,8 @@ Adapting to Harness Engineering in a Startup (While shipping)
   <video src="/ar_bo.mp4" autoplay loop muted playsinline class="h-48 rounded-lg shadow-lg" />
 </div>
 
-<div class="abs-br m-6 flex gap-2">
+<div class="abs-br m-6 flex gap-2 items-center">
+  <a href="https://github.com/debuggingfuture/slides-harness-engineering-retrospective/" target="_blank" class="text-sm opacity-50 hover:opacity-100">by @debuggingfuture</a>
   <span class="text-sm opacity-50">2026</span>
 </div>
 
