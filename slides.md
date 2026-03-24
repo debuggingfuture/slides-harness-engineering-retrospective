@@ -475,12 +475,22 @@ active: 4
 
 <div class="text-sm opacity-60">Continuous cleanup prevents drift.</div>
 
-- **AI slop is real** — zero-shot without review tagging 10+ action items for your colleague
-- Merging agent PRs without reading the diff, things didn't git add in worktree
-- Agents merging to `master` with `--admin`
-- **Every "no look pass"** bets the harness catches what your eyes didn't
+<div class="grid grid-cols-2 gap-8 mt-4">
 
-<img src="/ronaldinho-no-look-pass.gif" class="h-32 rounded-lg shadow-lg mt-2" />
+<div>
+
+- **AI slop is real** — zero-shot prompts passing around -> Entropy
+- **Mistakes Made**:
+  - Merging agent PRs without reading the diff, forgot to `git add`
+  - Agents merging to `master` with `--admin`
+
+</div>
+
+<div class="flex items-center justify-center">
+  <img src="/ronaldinho-no-look-pass.gif" class="h-48 rounded-lg shadow-lg" />
+</div>
+
+</div>
 
 ---
 layout: perspective
@@ -718,8 +728,8 @@ active: 8
 
 </div>
 
-- **Go fast, Go Slow** — Different landscape every week 
-- **Need of deep think** — tailor featureset, don't just ship what agents suggest
+- **Go Fast, Go Slow** — Different landscape every week 
+- **Deep think is even more valuable** — Don't be reactive. Tailor featureset that matters.
 - **What we did**: spawned Opencode/Slackbot the next day after reading the Stripe article
 
 ---
