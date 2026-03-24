@@ -475,12 +475,22 @@ active: 4
 
 <div class="text-sm opacity-60">Continuous cleanup prevents drift.</div>
 
-- **AI slop is real** — zero-shot prompts passing around -> Entropy 
+<div class="grid grid-cols-2 gap-8 mt-4">
+
+<div>
+
+- **AI slop is real** — zero-shot prompts passing around -> Entropy
 - **Mistakes Made**:
   - Merging agent PRs without reading the diff, forgot to `git add`
   - Agents merging to `master` with `--admin`
 
-<img src="/ronaldinho-no-look-pass.gif" class="h-32 rounded-lg shadow-lg mt-2" />
+</div>
+
+<div class="flex items-center justify-center">
+  <img src="/ronaldinho-no-look-pass.gif" class="h-48 rounded-lg shadow-lg" />
+</div>
+
+</div>
 
 ---
 layout: perspective
